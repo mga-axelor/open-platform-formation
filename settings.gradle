@@ -1,0 +1,3 @@
+rootProject.name = 'open-platform-formation'
+
+include "modules:base"
