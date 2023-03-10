@@ -37,6 +37,18 @@
     <many-to-many name="m2mTest" title="Multiple links to related objects"
       ref="com.axelor.base.db.TestRelatedModel" orderBy="code"/>
 
+
+    <extra-imports> <![CDATA[
+      import org.slf4j.*;
+      import java.util.*;
+    ]]></extra-imports>
+
+    <extra-code><![CDATA[
+      // Define constants
+      public static final int INT_CONSTANT = 8;
+      public static final String STRING_CONSTANT = "Contante de test";
+    ]]></extra-code>
+
   </entity>
 
 </domain-models>
