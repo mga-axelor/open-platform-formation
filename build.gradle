@@ -42,6 +42,7 @@ allprojects {
 dependencies {
   // add module dependencies
   implementation project(":modules:base")
+  implementation project(":modules:sale")
 }
 
 wrapper {
