@@ -49,6 +49,15 @@
       public static final String STRING_CONSTANT = "Contante de test";
     ]]></extra-code>
 
+    <track on="ALWAYS">
+
+      <field name="integerTest" on="UPDATE"/>
+
+      <message if="booleanTest == true" tag="important">Validation</message>
+      <content if="booleanTest == true">This test object has been successfully validated!</content>
+
+    </track>
+
   </entity>
 
 </domain-models>
