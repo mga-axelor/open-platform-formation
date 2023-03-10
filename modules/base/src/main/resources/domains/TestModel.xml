@@ -6,23 +6,36 @@
   <module name="base" package="com.axelor.base.db"/>
 
   <entity name="TestModel">
-    <string name="stringTest"/>
-    <string name="booleanTest"/>
-    <date name="dateTest"/>
-    <datetime name="datetimeTest"/>
-    <decimal name="decimalTest"/>
-    <integer name="integerTest"/>
-    <long name="testLong"/>
-    <time name="time"/>
 
-    <one-to-one name="o2oTest" ref="com.axelor.base.db.TestRelatedModel"/>
+    <string name="stringTest" title="Sequence" namecolumn="true" required="true"
+      unique="true"/>
 
-    <one-to-many name="o2mTest" ref="com.axelor.base.db.TestRelatedModel"
-      mappedBy="m2oTestRelated"/>
+    <string name="booleanTest" title="Validated?" nullable="false" default="false"/>
 
-    <many-to-one name="m2oTest" ref="com.axelor.base.db.TestRelatedModel"/>
+    <date name="dateTest" title="validationDate" copy="false" help="This field is a test !"/>
 
-    <many-to-many name="m2mTest" ref="com.axelor.base.db.TestRelatedModel"/>
+    <datetime name="datetimeTest" title="limitDateT" tz="true"/>
+
+    <decimal name="decimalTest" title="completionPercent" min="0" max="100"/>
+
+    <integer name="integerTest" title="Status" nullable="true"/>
+
+    <long name="testLong" title="Computed field" transient="true"/>
+
+    <time name="time" title="Duration"/>
+
+
+    <one-to-one name="o2oTest" title="Hair (additional facultative attributes)"
+      ref="com.axelor.base.db.TestRelatedModel"/>
+
+    <one-to-many name="o2mTest" title="Matematical tree childs"
+      ref="com.axelor.base.db.TestRelatedModel" mappedBy="m2oTestRelated" orphanRemoval="false"/>
+
+    <many-to-one name="m2oTest" title="Simple to a related object"
+      ref="com.axelor.base.db.TestRelatedModel"/>
+
+    <many-to-many name="m2mTest" title="Multiple links to related objects"
+      ref="com.axelor.base.db.TestRelatedModel" orderBy="code"/>
 
   </entity>
 

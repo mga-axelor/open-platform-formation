@@ -11,7 +11,7 @@
 
     <!-- Facultative -->
     <one-to-one name="o2oTestRelated" ref="com.axelor.base.db.TestModel"
-      mappedBy="o2oTest"/>
+      mappedBy="o2oTest" title="Human"/>
 
     <!-- Necessary -->
     <many-to-one name="m2oTestRelated" ref="com.axelor.base.db.TestModel"/>
