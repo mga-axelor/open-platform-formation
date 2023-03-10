@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+  <grid name="zip-grid-from-city" title="Zips" model="com.axelor.base.db.Zip">
+    <field name="code"/>
+  </grid>
+
+  <form name="zip-form-from-city" title="Zip" model="com.axelor.base.db.Zip">
+    <panel name="mainPanel">
+      <field name="code"/>
+    </panel>
+  </form>
+
+  <grid name="zip-grid" title="Zips" model="com.axelor.base.db.Zip">
+    <field name="name"/>
+    <field name="code"/>
+    <field name="city"/>
+  </grid>
+
+  <form name="zip-form" title="Zip" model="com.axelor.base.db.Zip">
+    <panel name="mainPanel">
+      <field name="code"/>
+      <field name="city" grid-view="city-grid" form-view="city-form"/>
+    </panel>
+  </form>
+
+</object-views>

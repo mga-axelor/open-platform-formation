@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+  <grid name="city-grid" title="Cities" model="com.axelor.base.db.City">
+    <field name="name"/>
+    <field name="country"/>
+  </grid>
+
+  <form name="city-form" title="City" model="com.axelor.base.db.City">
+    <panel name="mainPanel">
+      <field name="name"/>
+      <field name="country" grid-view="country-grid" form-view="country-form"/>
+      <field name="zipList" grid-view="zip-grid-from-city" form-view="zip-form-from-city" colSpan="12"/>
+    </panel>
+  </form>
+
+</object-views>
