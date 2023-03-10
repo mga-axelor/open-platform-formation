@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
+
+  <module name="base" package="com.axelor.sale.db"/>
+
+  <entity name="InvoiceLine">
+
+    <string name="title" title="Title" namecolumn="true"/>
+    <integer name="sequence" title="Sequence"/>
+
+    <many-to-one name="invoice" title="Invoice" ref="com.axelor.sale.db.Invoice"
+      required="true"/>
+    <many-to-one name="product" title="Product" ref="com.axelor.sale.db.Product"
+      required="true"/>
+
+    <decimal name="qty" title="Qty" min="0" default="0"/>
+    <decimal name="unitPrice" title="Unit price" min="0" default="0"/>
+    <decimal name="totalPrice" title="Total price" min="0" default="0"/>
+
+    <many-to-one name="saleOrderLine" title="Sale order line"
+      ref="com.axelor.sale.db.SaleOrderLine" required="true"/>
+
+  </entity>
+
+</domain-models>

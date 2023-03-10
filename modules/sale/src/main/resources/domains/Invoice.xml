@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
+
+  <module name="base" package="com.axelor.sale.db"/>
+
+  <entity name="Invoice">
+
+    <string name="invoiceSeq" title="N°" required="true" namecolumn="true"/>
+    <integer name="statusSelect" title="Status" required="true" default="0"/>
+
+    <many-to-one name="clientPartner" title="Client" ref="com.axelor.base.db.Partner"
+      required="true"/>
+
+    <one-to-many name="invoiceLineList" title="Details"
+      ref="com.axelor.sale.db.InvoiceLine" mappedBy="invoice"/>
+
+    <decimal name="totalPrice" title="Total price" min="0"/>
+
+    <string name="comments" title="Comments" large="true"/>
+
+    <many-to-many name="saleOrderSet" title="Sale orders"
+      ref="com.axelor.sale.db.SaleOrder"/>
+
+    <extra-code><![CDATA[
+      // statusSelect
+      public static final int STATUS_CANCELLED = -10;
+      public static final int STATUS_DRAFT = 0;
+      public static final int STATUS_VALIDATED = 10;
+      public static final int STATUS_PAID = 20;
+    ]]></extra-code>
+
+  </entity>
+
+</domain-models>

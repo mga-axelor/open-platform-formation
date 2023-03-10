@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
+
+  <module name="base" package="com.axelor.sale.db"/>
+
+  <entity name="SaleOrder">
+
+    <string name="saleOrderSeq" title="N°" required="true" namecolumn="true"/>
+    <integer name="statusSelect" title="Status" required="true" default="0"/>
+
+    <many-to-one name="clientPartner" title="Client" ref="com.axelor.base.db.Partner"
+      required="true"/>
+
+    <datetime name="finalizationDateT" title="Finalisation date"/>
+    <many-to-one name="finalizedBy" title="Finalized by" ref="com.axelor.auth.db.User"/>
+    <datetime name="confirmationDateT" title="Confirmation date"/>
+    <many-to-one name="confirmedBy" title="Confirmed by" ref="com.axelor.auth.db.User"/>
+
+    <one-to-many name="saleOrderLineList" title="Details"
+      ref="com.axelor.sale.db.SaleOrderLine" mappedBy="saleOrder"/>
+
+    <decimal name="totalPrice" title="Total price" min="0"/>
+
+    <string name="comments" title="Comments" large="true"/>
+
+    <many-to-many name="invoiceSet" title="Invoices" ref="com.axelor.sale.db.Invoice"
+      mappedBy="saleOrderSet"/>
+
+    <extra-code><![CDATA[
+      // statusSelect
+      public static final int STATUS_CANCELLED = -10;
+      public static final int STATUS_DRAFT = 0;
+      public static final int STATUS_FINALIZED = 10;
+      public static final int STATUS_CONFIRMED = 20;
+    ]]></extra-code>
+
+  </entity>
+
+</domain-models>
