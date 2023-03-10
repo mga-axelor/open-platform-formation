@@ -13,4 +13,18 @@
     <field name="secondaryPhoneNumber"/>
   </grid>
 
+  <form name="partner-form" title="Partner" model="com.axelor.base.db.Partner">
+    <panel name="mainPanel">
+      <field name="partnerSeq"/>
+      <field name="typeSelect"/>
+      <field name="civility"/>
+      <field name="firstName"/>
+      <field name="name"/>
+      <field name="addressList"/>
+      <field name="emailAddressList"/>
+      <field name="mainPhoneNumber"/>
+      <field name="secondaryPhoneNumber"/>
+    </panel>
+  </form>
+
 </object-views>
