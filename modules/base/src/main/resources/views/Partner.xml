@@ -13,17 +13,36 @@
     <field name="secondaryPhoneNumber"/>
   </grid>
 
-  <form name="partner-form" title="Partner" model="com.axelor.base.db.Partner">
-    <panel name="mainPanel">
-      <field name="partnerSeq"/>
+  <form name="partner-form" title="Partner" model="com.axelor.base.db.Partner" width="large">
+    <panel name="generalInformationPanel" itemSpan="4" canCollapse="true">
+      <field name="partnerSeq" colSpan="8"/>
       <field name="typeSelect"/>
-      <field name="civility"/>
+      <field name="civility" canNew="true"/>
       <field name="firstName"/>
       <field name="name"/>
-      <field name="addressList"/>
-      <field name="emailAddressList"/>
-      <field name="mainPhoneNumber"/>
-      <field name="secondaryPhoneNumber"/>
+    </panel>
+
+    <panel-tabs name="contactPanelTabs">
+
+      <panel-related field="addressList" grid-view="address-grid"
+        form-view="address-form"/>
+
+      <panel-related field="emailAddressList" grid-view="email-address-grid"
+        form-view="email-address-form"/>
+
+      <panel name="phonePanel" title="Phones">
+        <field name="mainPhoneNumber"/>
+        <field name="secondaryPhoneNumber"/>
+      </panel>
+
+    </panel-tabs>
+
+    <panel name="sidePanel" sidebar="true" showIf="id">
+      <field name="createdBy" grid-view="user-grid" form-view="user-form"/>
+      <field name="createdOn"/>
+      <field name="updatedBy" showIf="updatedBy != null" grid-view="user-grid"
+        form-view="user-form"/>
+      <field name="updatedOn" showIf="updatedBy != null"/>
     </panel>
   </form>
 
