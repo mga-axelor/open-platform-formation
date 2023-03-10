@@ -37,6 +37,12 @@
     <many-to-many name="m2mTest" title="Multiple links to related objects"
       ref="com.axelor.base.db.TestRelatedModel" orderBy="code"/>
 
+    <!-- simple equality, unneeded to add a filter -->
+    <finder-method name="findSequence" using="stringTest"/>
+    <finder-method name="findByM2O" using="m2oTest" all="true"/>
+
+    <finder-method name="findByCreatorName" using="String:creatorName"
+      filter="self.createdBy.name = :creatorName" all="true"/>
 
     <extra-imports> <![CDATA[
       import org.slf4j.*;
