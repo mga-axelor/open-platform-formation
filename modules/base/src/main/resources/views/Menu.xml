@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+  <menuitem name="formation-root" title="Formation" icon="fa-thumb-tack"
+    icon-background="teal" order="0"/>
+
+  <menuitem name="formation-root-conf" title="Configurations" parent="formation-root"
+    icon="fa-cog" icon-background="bluegrey" order="1000"/>
+
+  <menuitem name="formation-root-conf-civility" title="Civilities"
+    action="formation.root.conf.civility" parent="formation-root-conf" order="0"/>
+
+  <action-view name="formation.root.conf.civility" title="Civilities"
+    model="com.axelor.base.db.Civility">
+    <view type="grid" name="civility-grid"/>
+    <view type="form" name="civility-form"/>
+  </action-view>
+
+</object-views>
