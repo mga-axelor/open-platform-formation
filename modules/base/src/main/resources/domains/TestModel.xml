@@ -14,6 +14,16 @@
     <integer name="integerTest"/>
     <long name="testLong"/>
     <time name="time"/>
+
+    <one-to-one name="o2oTest" ref="com.axelor.base.db.TestRelatedModel"/>
+
+    <one-to-many name="o2mTest" ref="com.axelor.base.db.TestRelatedModel"
+      mappedBy="m2oTestRelated"/>
+
+    <many-to-one name="m2oTest" ref="com.axelor.base.db.TestRelatedModel"/>
+
+    <many-to-many name="m2mTest" ref="com.axelor.base.db.TestRelatedModel"/>
+
   </entity>
 
 </domain-models>
