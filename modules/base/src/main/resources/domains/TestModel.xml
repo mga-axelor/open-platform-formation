@@ -7,6 +7,13 @@
 
   <entity name="TestModel">
     <string name="stringTest"/>
+    <string name="booleanTest"/>
+    <date name="dateTest"/>
+    <datetime name="datetimeTest"/>
+    <decimal name="decimalTest"/>
+    <integer name="integerTest"/>
+    <long name="testLong"/>
+    <time name="time"/>
   </entity>
 
 </domain-models>
