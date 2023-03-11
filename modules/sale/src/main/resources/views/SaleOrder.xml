@@ -16,7 +16,8 @@
 
 
   <form name="sale-order-form" title="Sale order" model="com.axelor.sale.db.SaleOrder"
-    width="large">
+    width="large" onSave="action-sale-order-validate-total-price">
+
     <panel name="mainPanel" itemSpan="4">
       <field name="statusSelect" colSpan="12" widget="nav-select" readonly="true"/>
       <field name="saleOrderSeq"/>
@@ -59,6 +60,11 @@
     </panel>
 
   </form>
+
+
+  <action-validate name="action-sale-order-validate-total-price">
+    <alert message="The total price is 0." if="eval: totalPrice == 0"/>
+  </action-validate>
 
 
   <action-attrs name="action-sale-order-attrs-make-total-price-editable">
