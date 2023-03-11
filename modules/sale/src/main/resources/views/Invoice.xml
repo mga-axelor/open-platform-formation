@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+  <grid name="invoice-grid" title="Invoices" model="com.axelor.sale.db.Invoice">
+    <field name="invoiceSeq"/>
+    <field name="statusSelect"/>
+    <field name="clientPartner"/>
+    <field name="totalPrice"/>
+  </grid>
+
+
+  <form name="invoice-form" title="Invoice" model="com.axelor.sale.db.Invoice" width="large">
+    <panel name="mainPanel">
+      <field name="invoiceSeq"/>
+      <field name="statusSelect"/>
+      <field name="clientPartner"/>
+      <field name="totalPrice"/>
+
+      <field name="invoiceLineList" grid-view="invoice-line-grid"
+        form-view="invoice-line-form" colSpan="12"/>
+
+      <field name="comments" colSpan="12"/>
+    </panel>
+
+    <panel name="saleOrdersPanel" title="Related sale orders" itemSpan="12"
+      showIf="saleOrderSet != null &amp;&amp; saleOrderSet.length &gt; 0">
+
+      <field name="saleOrderSet" grid-view="sale-order-grid" form-view="sale-order-form"
+        showTitle="false" canNew="false" canRemove="false" canSelect="false" edit-window="blank"/>
+    </panel>
+
+  </form>
+
+</object-views>

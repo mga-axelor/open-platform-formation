@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+  <grid name="sale-order-grid" title="Sale orders" model="com.axelor.sale.db.SaleOrder">
+    <field name="saleOrderSeq"/>
+    <field name="statusSelect"/>
+    <field name="clientPartner"/>
+    <field name="finalizationDateT"/>
+    <field name="finalizedBy"/>
+    <field name="confirmationDateT"/>
+    <field name="confirmedBy"/>
+    <field name="totalPrice"/>
+  </grid>
+
+
+  <form name="sale-order-form" title="Sale order" model="com.axelor.sale.db.SaleOrder"
+    width="large">
+    <panel name="mainPanel">
+      <field name="saleOrderSeq" colSpan="4"/>
+      <field name="statusSelect" colSpan="8"/>
+      <field name="clientPartner" grid-view="partner-grid" form-view="partner-form"/>
+      <field name="totalPrice" readonly="true"/>
+      <field name="saleOrderLineList" grid-view="sale-order-line-grid"
+        form-view="sale-order-line-form" colSpan="12"/>
+      <field name="comments" colSpan="12"/>
+    </panel>
+
+    <panel name="invoicesPanel" title="Invoices" itemSpan="12"
+      showIf="invoiceSet != null &amp;&amp; invoiceSet.length &gt; 0">
+
+      <field name="invoiceSet" grid-view="invoice-grid" form-view="invoice-form"
+        showTitle="false" canNew="false" canRemove="false" canSelect="false" edit-window="blank"/>
+    </panel>
+
+    <panel name="actionsPanel" sidebar="true">
+      <!-- placeholder spacer, panel to complete later -->
+      <spacer/>
+    </panel>
+
+    <panel name="followupPanel" title="Follow up" showIf="id" sidebar="true">
+      <field name="createdOn"/>
+      <field name="createdBy"/>
+      <field name="finalizationDateT" showIf="finalizationDateT"/>
+      <field name="finalizedBy" showIf="finalizedBy"/>
+      <field name="confirmationDateT" showIf="confirmationDateT"/>
+      <field name="confirmedBy" showIf="confirmedBy"/>
+    </panel>
+
+  </form>
+
+</object-views>

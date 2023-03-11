@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+  <grid name="sale-order-line-grid" title="Sale order lines"
+    model="com.axelor.sale.db.SaleOrderLine" orderBy="sequence">
+    <field name="sequence"/>
+    <field name="title"/>
+    <field name="qty"/>
+    <field name="unitPrice"/>
+    <field name="totalPrice"/>
+  </grid>
+
+
+  <form name="sale-order-line-form" title="Sale order line"
+    model="com.axelor.sale.db.SaleOrderLine">
+    <panel name="mainPanel" itemSpan="4">
+      <field name="sequence"/>
+      <field name="title"/>
+      <field name="product" grid-view="product-grid" form-view="product-form"/>
+      <field name="qty"/>
+      <field name="unitPrice"/>
+      <field name="totalPrice"/>
+    </panel>
+  </form>
+
+</object-views>
