@@ -12,7 +12,7 @@
 
     <string name="booleanTest" title="Validated?" nullable="false" default="false"/>
 
-    <date name="dateTest" title="validationDate" copy="false" help="This field is a test !"/>
+    <date name="dateTest" title="validationDate" copy="false" help="This field is a test!"/>
 
     <datetime name="datetimeTest" title="limitDateT" tz="true"/>
 
@@ -31,11 +31,13 @@
     <one-to-many name="o2mTest" title="Matematical tree childs"
       ref="com.axelor.base.db.TestRelatedModel" mappedBy="m2oTestRelated" orphanRemoval="false"/>
 
-    <many-to-one name="m2oTest" title="Simple to a related object"
+    <many-to-one name="m2oTest" title="Simple link to another object"
       ref="com.axelor.base.db.TestRelatedModel"/>
 
-    <many-to-many name="m2mTest" title="Multiple links to related objects"
+    <many-to-many name="m2mTest" title="Multiple links to other objects"
       ref="com.axelor.base.db.TestRelatedModel" orderBy="code"/>
+
+    <unique-constraint columns="integerTest,dateTest"/>
 
     <!-- simple equality, unneeded to add a filter -->
     <finder-method name="findSequence" using="stringTest"/>
