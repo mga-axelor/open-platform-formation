@@ -79,6 +79,18 @@
     <field name="finalizedBy" expr="eval: __user__"/>
   </action-record>
 
+  <action-group name="action-sale-order-group-confirm">
+    <action name="action-sale-order-validate-warn-same-user-from-finalisation"
+      if="eval: __user__.equals(finalizedBy)"/>
+    <action name="action-sale-order-record-confirm"/>
+  </action-group>
+
+  <action-validate
+    name="action-sale-order-validate-warn-same-user-from-finalisation">
+    <alert
+      message="You already finalized this sale order. By confirming it yourself you will skip the double validation. Continue?"/>
+  </action-validate>
+
   <action-record name="action-sale-order-record-confirm"
     model="com.axelor.sale.db.SaleOrder">
     <field name="statusSelect" expr="eval: __repo__(SaleOrder).STATUS_CONFIRMED"/>
