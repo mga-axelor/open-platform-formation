@@ -13,6 +13,31 @@
     <field name="secondaryPhoneNumber"/>
   </grid>
 
+  <cards name="partner-cards" model="com.axelor.base.db.Partner" title="Partners">
+    <field name="partnerSeq"/>
+    <field name="typeSelect"/>
+    <field name="civility"/>
+    <field name="civility.code"/>
+    <field name="firstName"/>
+    <field name="name"/>
+    <field name="mainPhoneNumber"/>
+    <field name="secondaryPhoneNumber"/>
+    <template>
+    <![CDATA[
+      <div class="span12"><strong>{{partnerSeq}}</strong></div>
+      <div class="span8">
+        <span>
+          {{civility.code}} {{firstName}} {{name}}<br/>
+        </span>
+        <span>
+          {{mainPhoneNumber}}<br/>
+          {{secondaryPhoneNumber}}<br/>
+        </span>
+      </div>
+    ]]>
+    </template>
+  </cards>
+
   <form name="partner-form" title="Partner" model="com.axelor.base.db.Partner" width="large">
     <panel name="generalInformationPanel" itemSpan="4" canCollapse="true">
       <field name="partnerSeq" colSpan="8"/>
