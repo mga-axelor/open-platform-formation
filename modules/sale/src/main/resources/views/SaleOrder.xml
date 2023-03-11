@@ -17,9 +17,9 @@
 
   <form name="sale-order-form" title="Sale order" model="com.axelor.sale.db.SaleOrder"
     width="large">
-    <panel name="mainPanel">
-      <field name="saleOrderSeq" colSpan="4"/>
-      <field name="statusSelect" colSpan="8"/>
+    <panel name="mainPanel" itemSpan="4">
+      <field name="statusSelect" colSpan="12" widget="nav-select"/>
+      <field name="saleOrderSeq"/>
       <field name="clientPartner" grid-view="partner-grid" form-view="partner-form"/>
       <field name="totalPrice" readonly="true"/>
       <field name="saleOrderLineList" grid-view="sale-order-line-grid"

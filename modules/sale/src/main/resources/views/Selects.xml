@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+  <selection name="sale.sale.order.status.select">
+    <!-- Use different key than English translation to handle gender regarding languages -->
+    <!-- An object can be neutral in English, feminine in French but masculine in another language -->
+    <option value="-10">SaleOrder.Cancelled</option>
+    <option value="0">SaleOrder.Draft</option>
+    <option value="10">SaleOrder.Finalized</option>
+    <option value="20">SaleOrder.Confirmed</option>
+  </selection>
+
+</object-views>
