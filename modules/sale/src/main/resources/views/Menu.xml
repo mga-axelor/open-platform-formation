@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+
+  <menuitem name="formation-root-sale-order" title="Sale orders"
+    action="formation.root.sale.order" parent="formation-root" icon="fa-shopping-cart"
+    icon-background="bluegrey" order="100"/>
+
+  <action-view name="formation.root.sale.order" title="Sale orders"
+    model="com.axelor.sale.db.SaleOrder">
+    <view type="grid" name="sale-order-grid"/>
+    <view type="form" name="sale-order-form"/>
+  </action-view>
+
+
+  <menuitem name="formation-root-invoice" title="Invoices" action="formation.root.invoice"
+    parent="formation-root" icon="fa-file-pdf-o" icon-background="bluegrey" order="200"/>
+
+  <action-view name="formation.root.invoice" title="Invoices"
+    model="com.axelor.sale.db.Invoice">
+    <view type="grid" name="invoice-grid"/>
+    <view type="form" name="invoice-form"/>
+  </action-view>
+
+
+  <menuitem name="formation-root-product" title="Products" action="formation.root.product"
+    parent="formation-root" icon="fa-cubes" icon-background="bluegrey" order="200"/>
+
+  <action-view name="formation.root.product" title="Products"
+    model="com.axelor.sale.db.Product">
+    <view type="grid" name="product-grid"/>
+    <view type="form" name="product-form"/>
+  </action-view>
+
+
+</object-views>

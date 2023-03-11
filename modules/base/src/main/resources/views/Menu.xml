@@ -28,4 +28,22 @@
     <view type="form" name="civility-form"/>
   </action-view>
 
+  <menuitem name="formation-root-conf-city" title="Cities"
+    action="formation.root.conf.city" parent="formation-root-conf" order="100"/>
+
+  <action-view name="formation.root.conf.city" title="Cities"
+    model="com.axelor.base.db.City">
+    <view type="grid" name="city-grid"/>
+    <view type="form" name="city-form"/>
+  </action-view>
+
+  <menuitem name="formation-root-conf-country" title="Countries"
+    action="formation.root.conf.country" parent="formation-root-conf" order="200"/>
+
+  <action-view name="formation.root.conf.country" title="Countries"
+    model="com.axelor.base.db.Country">
+    <view type="grid" name="country-grid"/>
+    <view type="form" name="country-form"/>
+  </action-view>
+
 </object-views>
