@@ -18,7 +18,7 @@
   <form name="sale-order-form" title="Sale order" model="com.axelor.sale.db.SaleOrder"
     width="large">
     <panel name="mainPanel" itemSpan="4">
-      <field name="statusSelect" colSpan="12" widget="nav-select"/>
+      <field name="statusSelect" colSpan="12" widget="nav-select" readonly="true"/>
       <field name="saleOrderSeq"/>
       <field name="clientPartner" grid-view="partner-grid" form-view="partner-form"/>
       <field name="totalPrice" readonly="true"/>
@@ -35,8 +35,14 @@
     </panel>
 
     <panel name="actionsPanel" sidebar="true">
-      <!-- placeholder spacer, panel to complete later -->
-      <spacer/>
+      <button name="finalizeBtn" title="Finalize" onClick="action-sale-order-record-finalize"
+        showIf="statusSelect == 0"/>
+      <button name="confirmBtn" title="Confirm" onClick="action-sale-order-record-confirm"
+        showIf="statusSelect == 10"/>
+      <button name="cancelBtn" title="Cancel" onClick="action-sale-order-record-cancel"
+        showIf="statusSelect == 20" css="btn-danger"/>
+      <button name="backToDraftButton" title="Back to draft"
+        onClick="action-sale-order-record-draft" showIf="statusSelect == -10"/>
     </panel>
 
     <panel name="followupPanel" title="Follow up" showIf="id" sidebar="true">
@@ -49,5 +55,33 @@
     </panel>
 
   </form>
+
+  <action-record name="action-sale-order-record-finalize"
+    model="com.axelor.sale.db.SaleOrder">
+    <field name="statusSelect" expr="eval: __repo__(SaleOrder).STATUS_FINALIZED"/>
+    <field name="finalizationDateT" expr="eval: __time__"/>
+    <field name="finalizedBy" expr="eval: __user__"/>
+  </action-record>
+
+  <action-record name="action-sale-order-record-confirm"
+    model="com.axelor.sale.db.SaleOrder">
+    <field name="statusSelect" expr="eval: __repo__(SaleOrder).STATUS_CONFIRMED"/>
+    <field name="confirmationDateT" expr="eval: __time__"/>
+    <field name="confirmedBy" expr="eval: __user__"/>
+  </action-record>
+
+  <action-record name="action-sale-order-record-cancel"
+    model="com.axelor.sale.db.SaleOrder">
+    <field name="statusSelect" expr="eval: __repo__(SaleOrder).STATUS_CANCELLED"/>
+    <field name="finalizationDateT" expr="eval: null"/>
+    <field name="finalizedBy" expr="eval: null"/>
+    <field name="confirmationDateT" expr="eval: null"/>
+    <field name="confirmedBy" expr="eval: null"/>
+  </action-record>
+
+  <action-record name="action-sale-order-record-draft"
+    model="com.axelor.sale.db.SaleOrder">
+    <field name="statusSelect" expr="eval: __repo__(SaleOrder).STATUS_DRAFT"/>
+  </action-record>
 
 </object-views>
