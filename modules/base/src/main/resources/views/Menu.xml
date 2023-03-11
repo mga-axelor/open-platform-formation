@@ -11,8 +11,8 @@
 
   <action-view name="formation.root.partner" title="Partners"
     model="com.axelor.base.db.Partner">
-    <view type="cards" name="partner-cards"/>
     <view type="grid" name="partner-grid"/>
+    <view type="cards" name="partner-cards"/>
     <view type="form" name="partner-form"/>
   </action-view>
 
