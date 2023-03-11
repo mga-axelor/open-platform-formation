@@ -7,8 +7,9 @@
 
   <entity name="Partner">
 
-    <string name="partnerSeq" title="Sequence" namecolumn="true" required="true"
-      unique="true"/>
+    <string name="partnerSeq" title="Sequence" required="true" unique="true"/>
+
+    <string name="fullName" title="Full name" namecolumn="true" readonly="true"/>
 
     <string name="typeSelect" title="Partner type" required="true"
       selection="base.partner.type.select"/>

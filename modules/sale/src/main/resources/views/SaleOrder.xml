@@ -42,7 +42,7 @@
 
       <button name="finalizeBtn" title="Finalize" onClick="action-sale-order-record-finalize"
         showIf="statusSelect == 0"/>
-      <button name="confirmBtn" title="Confirm" onClick="action-sale-order-record-confirm"
+      <button name="confirmBtn" title="Confirm" onClick="action-sale-order-group-confirm"
         showIf="statusSelect == 10"/>
       <button name="cancelBtn" title="Cancel" onClick="action-sale-order-record-cancel"
         showIf="statusSelect == 20" css="btn-danger"/>

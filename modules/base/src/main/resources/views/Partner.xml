@@ -6,6 +6,7 @@
   <grid name="partner-grid" title="Partners" model="com.axelor.base.db.Partner" orderBy="id">
     <field name="partnerSeq"/>
     <field name="typeSelect" widget="single-select"/>
+    <field name="fullName"/>
     <field name="civility"/>
     <field name="firstName"/>
     <field name="name"/>
@@ -38,7 +39,8 @@
     </template>
   </cards>
 
-  <form name="partner-form" title="Partner" model="com.axelor.base.db.Partner" width="large">
+  <form name="partner-form" title="Partner" model="com.axelor.base.db.Partner" width="large"
+    onSave="action-partner-record-compute-full-name">
     <panel name="generalInformationPanel" itemSpan="4" canCollapse="true">
       <field name="partnerSeq" colSpan="8"/>
       <field name="typeSelect"/>
@@ -69,6 +71,16 @@
         form-view="user-form"/>
       <field name="updatedOn" showIf="updatedBy != null"/>
     </panel>
+
+    <panel name="hiddenPanel" hidden="true">
+      <field name="fullName"/>
+    </panel>
   </form>
+
+  <action-record name="action-partner-record-compute-full-name"
+    model="com.axelor.base.db.Partner">
+    <field name="fullName" expr="eval: name" if="!firstName"/>
+    <field name="fullName" expr="eval: firstName + ' ' + name" if="firstName"/>
+  </action-record>
 
 </object-views>
