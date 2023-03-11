@@ -35,6 +35,10 @@
     </panel>
 
     <panel name="actionsPanel" sidebar="true">
+
+      <button name="editTotalPriceBtn" title="Edit total price" css="btn-custom"
+        onClick="action-sale-order-attrs-make-total-price-editable" showIf="statusSelect != 20"/>
+
       <button name="finalizeBtn" title="Finalize" onClick="action-sale-order-record-finalize"
         showIf="statusSelect == 0"/>
       <button name="confirmBtn" title="Confirm" onClick="action-sale-order-record-confirm"
@@ -55,6 +59,12 @@
     </panel>
 
   </form>
+
+
+  <action-attrs name="action-sale-order-attrs-make-total-price-editable">
+    <attribute name="readonly" for="totalPrice" expr="false"/>
+  </action-attrs>
+
 
   <action-record name="action-sale-order-record-finalize"
     model="com.axelor.sale.db.SaleOrder">
