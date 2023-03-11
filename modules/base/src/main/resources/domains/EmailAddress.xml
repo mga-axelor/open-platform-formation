@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
+
+  <module name="base" package="com.axelor.base.db"/>
+
+  <entity name="EmailAddress">
+
+    <many-to-one name="partner" ref="com.axelor.base.db.Partner" required="true"/>
+
+    <string name="fullEmail" title="Full email" readonly="true"/>
+    <!-- specific title key key because "User name" can have a different meaning -->
+    <string name="userName" title="emailAddress.userName" required="true"/>
+    <string name="domainName" title="Domain name" required="true"/>
+
+    <integer name="priority" title="Priority" required="true" default="0"
+      help="The email with the higher priority, among other emails from the same partner, is considered as the main email of the partner."/>
+
+    <boolean name="isOutdated" title="Outdated" default="false" nullable="false"/>
+
+  </entity>
+
+</domain-models>

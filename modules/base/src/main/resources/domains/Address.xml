@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
+
+  <module name="base" package="com.axelor.base.db"/>
+
+  <entity name="Address">
+
+    <many-to-one name="partner" ref="com.axelor.base.db.Partner" required="true"/>
+
+    <string name="streetAndNumber" title="Street and number" required="true"/>
+    <many-to-one name="zip" title="Zip" ref="com.axelor.base.db.Zip"/>
+
+    <!-- Country should be readonly if a zip is filled. -->
+    <!-- When changing the zip the country is set to the associated city's one) -->
+    <many-to-one name="country" title="Country" ref="com.axelor.base.db.Country"
+      required="true"/>
+
+    <string name="additionalDeliveryInformation" title="Additional delivery information"
+      large="true" help="To indicate the building, code or any instructions for the deliveries"/>
+
+    <integer name="priority" title="Priority" required="true" default="0"
+      help="The address with the higher priority, among other addresses from the same partner, is considered as the main address of the partner."/>
+
+    <boolean name="isOutdated" title="Outdated" default="false" nullable="false"/>
+
+  </entity>
+
+</domain-models>

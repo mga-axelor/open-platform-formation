@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
+
+  <module name="base" package="com.axelor.base.db"/>
+
+  <entity name="Partner">
+
+    <string name="partnerSeq" title="Sequence" namecolumn="true" required="true"
+      unique="true"/>
+
+    <string name="typeSelect" title="Partner type" required="true"/>
+    <many-to-one name="civility" title="Civility" ref="com.axelor.base.db.Civility"/>
+    <string name="name" title="Name" required="true"/>
+    <string name="firstName" title="First name"/>
+
+    <one-to-many name="addressList" title="Addresses" ref="com.axelor.base.db.Address"
+      mappedBy="partner"/>
+    <one-to-many name="emailAddressList" title="Email addresses"
+      ref="com.axelor.base.db.EmailAddress" mappedBy="partner"/>
+
+    <string name="mainPhoneNumber" title="Main phone number"/>
+    <string name="secondaryPhoneNumber" title="Secondary phone number"/>
+
+
+    <extra-code><![CDATA[
+      // typeSelect
+      public static final String TYPE_HUMAN = "human";
+      public static final String TYPE_MORAL_PERSON = "moral person";
+    ]]></extra-code>
+
+  </entity>
+
+</domain-models>
