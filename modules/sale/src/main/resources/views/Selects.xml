@@ -12,4 +12,11 @@
     <option value="20">SaleOrder.Confirmed</option>
   </selection>
 
+  <selection name="sale.invoice.status.select">
+    <option value="-10">Invoice.Cancelled</option>
+    <option value="0">Invoice.Draft</option>
+    <option value="10">Invoice.Validated</option>
+    <option value="20">Invoice.Paid</option>
+  </selection>
+
 </object-views>
