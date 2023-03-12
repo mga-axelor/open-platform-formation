@@ -49,6 +49,10 @@
         showIf="statusSelect == 20" css="btn-danger"/>
       <button name="backToDraftButton" title="Back to draft"
         onClick="action-sale-order-record-draft" showIf="statusSelect == -10"/>
+
+      <button name="invoiceBtn" title="Invoice (verb)"
+        onClick="action-sale-order-method-invoice" showIf="statusSelect == 20 &amp;&amp; id"
+        css="btn-success"/>
     </panel>
 
     <panel name="followupPanel" title="Follow up" showIf="id" sidebar="true">
@@ -62,6 +66,9 @@
 
   </form>
 
+  <action-method name="action-sale-order-method-invoice">
+    <call class="com.axelor.apps.sale.web.SaleOrderController" method="invoice"/>
+  </action-method>
 
   <action-record name="action-sale-order-record-compute-total-price"
     model="com.axelor.sale.db.SaleOrder">
