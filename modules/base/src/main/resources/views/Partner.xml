@@ -5,7 +5,7 @@
 
   <grid name="partner-grid" title="Partners" model="com.axelor.base.db.Partner" orderBy="id">
     <field name="partnerSeq"/>
-    <field name="typeSelect"/>
+    <field name="typeSelect" widget="single-select"/>
     <field name="civility"/>
     <field name="firstName"/>
     <field name="name"/>
@@ -15,7 +15,7 @@
 
   <cards name="partner-cards" model="com.axelor.base.db.Partner" title="Partners">
     <field name="partnerSeq"/>
-    <field name="typeSelect"/>
+    <field name="typeSelect" widget="single-select"/>
     <field name="civility"/>
     <field name="civility.code"/>
     <field name="firstName"/>
