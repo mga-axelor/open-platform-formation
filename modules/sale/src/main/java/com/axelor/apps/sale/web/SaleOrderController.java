@@ -18,8 +18,8 @@
 package com.axelor.apps.sale.web;
 
 import com.axelor.apps.sale.service.saleorder.SaleOrderInvoicingService;
-import com.axelor.i18n.I18n;
 import com.axelor.inject.Beans;
+import com.axelor.meta.schema.actions.ActionView;
 import com.axelor.rpc.ActionRequest;
 import com.axelor.rpc.ActionResponse;
 import com.axelor.rpc.Context;
@@ -39,7 +39,13 @@ public class SaleOrderController {
 
     Invoice invoice = Beans.get(SaleOrderInvoicingService.class).processInvoicing(managedSaleOrder);
 
-    response.setFlash(String.format(I18n.get("Invoice '%s' created."), invoice.getInvoiceSeq()));
     response.setReload(true);
+
+    response.setView(
+        ActionView.define("Invoice")
+            .model("com.axelor.sale.db.Invoice")
+            .add("form", "invoice-form")
+            .context("_showRecord", invoice.getId())
+            .map());
   }
 }

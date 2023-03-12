@@ -17,8 +17,6 @@
  */
 package com.axelor.apps.sale.service.saleorder;
 
-import java.util.Set;
-
 import com.axelor.sale.db.Invoice;
 import com.axelor.sale.db.InvoiceLine;
 import com.axelor.sale.db.SaleOrder;
@@ -26,49 +24,52 @@ import com.axelor.sale.db.SaleOrderLine;
 import com.axelor.sale.db.repo.InvoiceRepository;
 import com.google.inject.Inject;
 import com.google.inject.persist.Transactional;
+import java.util.Set;
 
 public class SaleOrderInvoicingServiceImpl implements SaleOrderInvoicingService {
 
-	protected final InvoiceRepository InvoiceRepo;
+  protected final InvoiceRepository InvoiceRepo;
 
-	@Inject
-	public SaleOrderInvoicingServiceImpl(InvoiceRepository InvoiceRepo) {
-		this.InvoiceRepo = InvoiceRepo;
-	}
+  @Inject
+  public SaleOrderInvoicingServiceImpl(InvoiceRepository InvoiceRepo) {
+    this.InvoiceRepo = InvoiceRepo;
+  }
 
-	@Override
-	@Transactional
-	public Invoice processInvoicing(SaleOrder saleOrder) {
+  @Override
+  @Transactional
+  public Invoice processInvoicing(SaleOrder saleOrder) {
 
-		Invoice invoice = new Invoice();
-		invoice.setClientPartner(saleOrder.getClientPartner());
-		invoice.setTotalPrice(saleOrder.getTotalPrice());
+    Invoice invoice = new Invoice();
+    invoice.setClientPartner(saleOrder.getClientPartner());
+    invoice.setTotalPrice(saleOrder.getTotalPrice());
 
-		fillInvoiceSeq(saleOrder, invoice);
+    fillInvoiceSeq(saleOrder, invoice);
 
-		invoice.addSaleOrderSetItem(saleOrder);
+    invoice.addSaleOrderSetItem(saleOrder);
 
-		saleOrder.getSaleOrderLineList().stream().map(this::createInvoiceLine).forEach(invoice::addInvoiceLineListItem);
+    saleOrder.getSaleOrderLineList().stream()
+        .map(this::createInvoiceLine)
+        .forEach(invoice::addInvoiceLineListItem);
 
-		return InvoiceRepo.save(invoice);
-	}
+    return InvoiceRepo.save(invoice);
+  }
 
-	protected void fillInvoiceSeq(SaleOrder saleOrder, Invoice invoice) {
-		Set<Invoice> invoiceSet = saleOrder.getInvoiceSet();
-		int invoiceNbr = invoiceSet != null ? invoiceSet.size() + 1 : 1;
-		String invoiceNbrStr = String.format("%03d", invoiceNbr);
-		invoice.setInvoiceSeq(saleOrder.getSaleOrderSeq() + "-" + invoiceNbrStr);
-	}
+  protected void fillInvoiceSeq(SaleOrder saleOrder, Invoice invoice) {
+    Set<Invoice> invoiceSet = saleOrder.getInvoiceSet();
+    int invoiceNbr = invoiceSet != null ? invoiceSet.size() + 1 : 1;
+    String invoiceNbrStr = String.format("%03d", invoiceNbr);
+    invoice.setInvoiceSeq(saleOrder.getSaleOrderSeq() + "-" + invoiceNbrStr);
+  }
 
-	protected InvoiceLine createInvoiceLine(SaleOrderLine saleOrderLine) {
-		InvoiceLine invoiceLine = new InvoiceLine();
-		invoiceLine.setSequence(saleOrderLine.getSequence());
-		invoiceLine.setTitle(saleOrderLine.getTitle());
-		invoiceLine.setProduct(saleOrderLine.getProduct());
-		invoiceLine.setQty(saleOrderLine.getQty());
-		invoiceLine.setUnitPrice(saleOrderLine.getUnitPrice());
-		invoiceLine.setTotalPrice(saleOrderLine.getTotalPrice());
-		invoiceLine.setSaleOrderLine(saleOrderLine);
-		return invoiceLine;
-	}
+  protected InvoiceLine createInvoiceLine(SaleOrderLine saleOrderLine) {
+    InvoiceLine invoiceLine = new InvoiceLine();
+    invoiceLine.setSequence(saleOrderLine.getSequence());
+    invoiceLine.setTitle(saleOrderLine.getTitle());
+    invoiceLine.setProduct(saleOrderLine.getProduct());
+    invoiceLine.setQty(saleOrderLine.getQty());
+    invoiceLine.setUnitPrice(saleOrderLine.getUnitPrice());
+    invoiceLine.setTotalPrice(saleOrderLine.getTotalPrice());
+    invoiceLine.setSaleOrderLine(saleOrderLine);
+    return invoiceLine;
+  }
 }
