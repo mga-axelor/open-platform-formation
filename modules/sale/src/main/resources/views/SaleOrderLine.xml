@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
   <grid name="sale-order-line-grid" title="Sale order lines"
-    model="com.axelor.sale.db.SaleOrderLine" orderBy="sequence">
+    model="com.axelor.sale.db.SaleOrderLine" orderBy="sequence" canMove="true">
     <field name="sequence"/>
     <field name="title"/>
     <field name="qty"/>
@@ -16,13 +16,30 @@
   <form name="sale-order-line-form" title="Sale order line"
     model="com.axelor.sale.db.SaleOrderLine">
     <panel name="mainPanel" itemSpan="4">
-      <field name="sequence"/>
-      <field name="title"/>
-      <field name="product" grid-view="product-grid" form-view="product-form"/>
-      <field name="qty"/>
-      <field name="unitPrice"/>
-      <field name="totalPrice"/>
+      <field name="title" readonlyIf="!product" colSpan="8"/>
+      <field name="product" grid-view="product-grid" form-view="product-form"
+        onChange="action-sale-order-line-group-change-product"/>
+      <field name="qty" onChange="action-sale-order-line-record-compute-total-price"/>
+      <field name="unitPrice" readonlyIf="!product"
+        onChange="action-sale-order-line-record-compute-total-price"/>
+      <field name="totalPrice" readonlyIf="!product"/>
     </panel>
   </form>
+
+  <action-group name="action-sale-order-line-group-change-product">
+    <action name="action-sale-order-line-record-change-product"/>
+    <action name="action-sale-order-line-record-compute-total-price"/>
+  </action-group>
+
+  <action-record name="action-sale-order-line-record-change-product"
+    model="com.axelor.sale.db.SaleOrderLine">
+    <field name="title" expr="eval: product?.name ?: name"/>
+    <field name="unitPrice" expr="eval: product?.unitPrice ?: 0"/>
+  </action-record>
+
+  <action-record name="action-sale-order-line-record-compute-total-price"
+    model="com.axelor.sale.db.SaleOrderLine">
+    <field name="totalPrice" expr="eval: qty * unitPrice"/>
+  </action-record>
 
 </object-views>
