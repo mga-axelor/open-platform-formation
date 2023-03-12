@@ -24,7 +24,8 @@
       <field name="clientPartner" grid-view="partner-grid" form-view="partner-form"/>
       <field name="totalPrice" readonly="true"/>
       <field name="saleOrderLineList" grid-view="sale-order-line-grid"
-        form-view="sale-order-line-form" colSpan="12"/>
+        form-view="sale-order-line-form" colSpan="12"
+        onChange="action-sale-order-record-compute-total-price"/>
       <field name="comments" colSpan="12"/>
     </panel>
 
@@ -60,6 +61,12 @@
     </panel>
 
   </form>
+
+
+  <action-record name="action-sale-order-record-compute-total-price"
+    model="com.axelor.sale.db.SaleOrder">
+    <field name="totalPrice" expr="eval: saleOrderLineList?.totalPrice.sum()"/>
+  </action-record>
 
 
   <action-validate name="action-sale-order-validate-total-price">
