@@ -8,25 +8,14 @@
   <entity name="Zip">
 
     <!-- Will contain concatenation of Zip & CityName -->
-    <string name="name" title="Name" readonly="true" namecolumn="true">
-      <![CDATA[
-        if (city == null) {
-          return code;
-        }
-
-        String cityName = city.getName();
-        if (cityName == null) {
-          return code;
-        }
-
-        return code + " " + cityName;
-      ]]>
-    </string>
+    <string name="name" title="Name" readonly="true" namecolumn="true"/>
 
     <string name="code" title="Code" required="true"/>
     <many-to-one name="city" ref="com.axelor.base.db.City" required="true"/>
 
     <unique-constraint columns="code,city"/>
+
+    <entity-listener class="com.axelor.apps.base.listener.ZipListener"/>
 
   </entity>
 
