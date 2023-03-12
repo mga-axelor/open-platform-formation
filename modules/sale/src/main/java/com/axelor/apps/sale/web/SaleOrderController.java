@@ -17,11 +17,15 @@
  */
 package com.axelor.apps.sale.web;
 
+import com.axelor.apps.sale.service.saleorder.SaleOrderInvoicingService;
 import com.axelor.i18n.I18n;
+import com.axelor.inject.Beans;
 import com.axelor.rpc.ActionRequest;
 import com.axelor.rpc.ActionResponse;
 import com.axelor.rpc.Context;
+import com.axelor.sale.db.Invoice;
 import com.axelor.sale.db.SaleOrder;
+import com.axelor.sale.db.repo.SaleOrderRepository;
 
 public class SaleOrderController {
 
@@ -31,9 +35,11 @@ public class SaleOrderController {
 
     SaleOrder ctxSaleOrder = context.asType(SaleOrder.class);
 
-    response.setFlash(
-        String.format(
-            I18n.get("Cannot invoice the sale order '%s'. The process in not implemented yet!"),
-            ctxSaleOrder.getSaleOrderSeq()));
+    SaleOrder managedSaleOrder = Beans.get(SaleOrderRepository.class).find(ctxSaleOrder.getId());
+
+    Invoice invoice = Beans.get(SaleOrderInvoicingService.class).processInvoicing(managedSaleOrder);
+
+    response.setFlash(String.format(I18n.get("Invoice '%s' created."), invoice.getInvoiceSeq()));
+    response.setReload(true);
   }
 }

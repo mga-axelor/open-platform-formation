@@ -51,7 +51,7 @@
         onClick="action-sale-order-record-draft" showIf="statusSelect == -10"/>
 
       <button name="invoiceBtn" title="Invoice (verb)"
-        onClick="action-sale-order-method-invoice" showIf="statusSelect == 20 &amp;&amp; id"
+        onClick="action-sale-order-group-invoice" showIf="statusSelect == 20 &amp;&amp; id"
         css="btn-success"/>
     </panel>
 
@@ -66,9 +66,12 @@
 
   </form>
 
-  <action-method name="action-sale-order-method-invoice">
-    <call class="com.axelor.apps.sale.web.SaleOrderController" method="invoice"/>
-  </action-method>
+  <action-group name="action-sale-order-group-invoice">
+    <action name="save"/>
+    <!-- Could have been done with an action method. -->
+    <!-- If the same method is called by multiple trigger, better avoid duplication by using action-method. -->
+    <action name="com.axelor.apps.sale.web.SaleOrderController:invoice"/>
+  </action-group>
 
   <action-record name="action-sale-order-record-compute-total-price"
     model="com.axelor.sale.db.SaleOrder">
