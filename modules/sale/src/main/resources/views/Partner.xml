@@ -26,6 +26,9 @@
       <insert position="inside">
         <panel name="salePanel" title="Sale relative informations">
           <field name="personnalBalance"/>
+
+          <panel-dashlet action="action-partner-view-show-related-sale-orders"
+            colSpan="12"/>
         </panel>
       </insert>
     </extend>
@@ -37,5 +40,13 @@
     <field name="fullName" expr="eval: name" if="!firstName"/>
     <field name="fullName" expr="eval: firstName + ' ' + name" if="firstName"/>
   </action-record>
+
+  <action-view name="action-partner-view-show-related-sale-orders" title="Sale orders"
+    model="com.axelor.sale.db.SaleOrder">
+    <view type="grid" name="sale-order-grid"/>
+    <view type="form" name="sale-order-form"/>
+    <domain>self.clientPartner = :partner</domain>
+    <context name="partner" expr="eval: __this__.id ?: 0L"/>
+  </action-view>
 
 </object-views>
