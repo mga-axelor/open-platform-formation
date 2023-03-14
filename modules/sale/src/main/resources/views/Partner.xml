@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+  <grid id="sale-partner-grid" name="partner-grid" title="Partners"
+    model="com.axelor.base.db.Partner" orderBy="id" extension="true">
+    <extend target="/">
+      <insert position="inside">
+        <field name="personnalBalance"/>
+      </insert>
+    </extend>
+  </grid>
+
+  <!-- Warning, the attribute directly on the <form/> are ignored when there is extension="true" -->
+  <!-- We just need to copy mandatory attributes from the original view (title, model) -->
+  <!-- If needed to change onSave or title for example, use <extend target="/"></extend> -->
+  <form id="sale-partner-form" name="partner-form" title="Partner"
+    model="com.axelor.base.db.Partner" extension="true">
+
+    <extend target="/">
+      <attribute name="title" value="Client"/>
+    </extend>
+
+    <extend target="//panel-tabs[@name='contactPanelTabs']">
+      <insert position="inside">
+        <panel name="salePanel" title="Sale relative informations">
+          <field name="personnalBalance"/>
+        </panel>
+      </insert>
+    </extend>
+
+  </form>
+
+  <action-record name="action-partner-record-compute-full-name"
+    model="com.axelor.base.db.Partner">
+    <field name="fullName" expr="eval: name" if="!firstName"/>
+    <field name="fullName" expr="eval: firstName + ' ' + name" if="firstName"/>
+  </action-record>
+
+</object-views>
