@@ -4,6 +4,10 @@
   xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
   <grid name="sale-order-grid" title="Sale orders" model="com.axelor.sale.db.SaleOrder">
+    <hilite color="grey" if="statusSelect == -10"/>
+    <hilite background="amber" if="statusSelect == 0" />
+    <hilite background="lightgreen" if="statusSelect == 10"/>
+    <hilite background="lightblue" if="statusSelect == 20"/>
     <field name="saleOrderSeq"/>
     <field name="statusSelect"/>
     <field name="clientPartner"/>
