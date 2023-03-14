@@ -11,8 +11,16 @@
   <form name="city-form" title="City" model="com.axelor.base.db.City">
     <panel name="mainPanel">
       <field name="name"/>
-      <field name="country" grid-view="country-grid" form-view="country-form"/>
-      <field name="zipList" grid-view="zip-grid-from-city" form-view="zip-form-from-city" colSpan="12"/>
+      <field name="zipList" grid-view="zip-grid-from-city" form-view="zip-form-from-city"
+        colSpan="12"/>
+
+      <field name="country" grid-view="country-grid" form-view="country-form" colSpan="12"
+        canNew="true">
+        <editor>
+          <field name="alpha2Code"/>
+          <field name="name"/>
+        </editor>
+      </field>
     </panel>
   </form>
 
