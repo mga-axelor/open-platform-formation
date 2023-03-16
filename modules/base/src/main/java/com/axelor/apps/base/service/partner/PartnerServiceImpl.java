@@ -17,11 +17,16 @@ public class PartnerServiceImpl implements PartnerService {
   @Override
   @Transactional
   public Partner duplicate(Partner partner) {
+    Partner duplicatedPartner = duplicatePartner(partner);
+    return partnerRepository.save(duplicatedPartner);
+  }
+
+  protected Partner duplicatePartner(Partner partner) {
     Partner duplicatedPartner = new Partner();
     duplicatedPartner.setFirstName(partner.getFirstName());
     duplicatedPartner.setName(partner.getName());
     duplicatedPartner.setPartnerSeq(partner.getPartnerSeq() + "-duplicated");
     duplicatedPartner.setTypeSelect(partner.getTypeSelect());
-    return partnerRepository.save(duplicatedPartner);
+    return duplicatedPartner;
   }
 }
