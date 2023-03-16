@@ -18,9 +18,13 @@
 package com.axelor.apps.base.module;
 
 import com.axelor.app.AxelorModule;
+import com.axelor.apps.base.service.partner.PartnerService;
+import com.axelor.apps.base.service.partner.PartnerServiceImpl;
 
 public class BaseModule extends AxelorModule {
 
   @Override
-  protected void configure() {}
+  protected void configure() {
+    bind(PartnerService.class).to(PartnerServiceImpl.class);
+  }
 }

@@ -64,6 +64,10 @@
 
     </panel-tabs>
 
+    <panel name="actionsPanel" sidebar="true" showIf="id">
+      <button name="duplicateButton" onClick="action-partner-method-duplicate-partner" title="Duplicate" css="btn-custom"/>
+    </panel>
+
     <panel name="sidePanel" sidebar="true" showIf="id">
       <field name="createdBy" grid-view="user-grid" form-view="user-form"/>
       <field name="createdOn"/>
@@ -82,5 +86,9 @@
     <field name="fullName" expr="eval: name" if="!firstName"/>
     <field name="fullName" expr="eval: firstName + ' ' + name" if="firstName"/>
   </action-record>
+
+  <action-method name="action-partner-method-duplicate-partner">
+    <call class="com.axelor.apps.base.web.PartnerController" method="duplicate"/>
+  </action-method>
 
 </object-views>
