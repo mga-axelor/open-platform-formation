@@ -25,6 +25,7 @@
     <string name="mainPhoneNumber" title="Main phone number"/>
     <string name="secondaryPhoneNumber" title="Secondary phone number"/>
 
+    <finder-method name="findByPartnerSeq" using="partnerSeq"/>
 
     <extra-code><![CDATA[
       // typeSelect
