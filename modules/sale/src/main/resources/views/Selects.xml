@@ -6,10 +6,10 @@
   <selection name="sale.sale.order.status.select">
     <!-- Use different key than English translation to handle gender regarding languages -->
     <!-- An object can be neutral in English, feminine in French but masculine in another language -->
-    <option value="-10">SaleOrder.Cancelled</option>
-    <option value="0">SaleOrder.Draft</option>
-    <option value="10">SaleOrder.Finalized</option>
-    <option value="20">SaleOrder.Confirmed</option>
+    <option value="-10" order="4">SaleOrder.Cancelled</option>
+    <option value="0" order="3">SaleOrder.Draft</option>
+    <option value="10" order="2">SaleOrder.Finalized</option>
+    <option value="20" order="1">SaleOrder.Confirmed</option>
   </selection>
 
   <selection name="sale.invoice.status.select">
@@ -17,6 +17,11 @@
     <option value="0">Invoice.Draft</option>
     <option value="10">Invoice.Validated</option>
     <option value="20">Invoice.Paid</option>
+  </selection>
+
+
+  <selection name="base.partner.type.select" id="sale.partner.type.select">
+    <option value="animal" color="green">Animal</option>
   </selection>
 
 </object-views>
