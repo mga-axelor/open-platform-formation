@@ -15,19 +15,24 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.axelor.apps.sale.module;
+package com.axelor.apps.sale.service.partner;
 
-import com.axelor.app.AxelorModule;
 import com.axelor.apps.base.service.partner.PartnerServiceImpl;
-import com.axelor.apps.sale.service.partner.SalePartnerServiceImpl;
-import com.axelor.apps.sale.service.saleorder.SaleOrderInvoicingService;
-import com.axelor.apps.sale.service.saleorder.SaleOrderInvoicingServiceImpl;
+import com.axelor.base.db.Partner;
+import com.axelor.base.db.repo.PartnerRepository;
+import com.google.inject.Inject;
 
-public class SaleModule extends AxelorModule {
+public class SalePartnerServiceImpl extends PartnerServiceImpl {
+
+  @Inject
+  public SalePartnerServiceImpl(PartnerRepository partnerRepository) {
+    super(partnerRepository);
+  }
 
   @Override
-  protected void configure() {
-    bind(SaleOrderInvoicingService.class).to(SaleOrderInvoicingServiceImpl.class);
-    bind(PartnerServiceImpl.class).to(SalePartnerServiceImpl.class);
+  protected Partner duplicatePartner(Partner partner) {
+    Partner duplicatedPartner = super.duplicatePartner(partner);
+    duplicatedPartner.setPersonnalBalance(partner.getPersonnalBalance());
+    return duplicatedPartner;
   }
 }
