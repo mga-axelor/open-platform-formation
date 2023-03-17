@@ -4,8 +4,11 @@
   xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
   <grid name="sale-order-grid" title="Sale orders" model="com.axelor.sale.db.SaleOrder">
+    <toolbar>
+      <button onClick="action-sale-order-view-show-popup" name="popupDummyFieldsTestBtn" title="Dummy example"/>
+    </toolbar>
     <hilite color="grey" if="statusSelect == -10"/>
-    <hilite background="amber" if="statusSelect == 0" />
+    <hilite background="amber" if="statusSelect == 0"/>
     <hilite background="lightgreen" if="statusSelect == 10"/>
     <hilite background="lightblue" if="statusSelect == 20"/>
     <field name="saleOrderSeq"/>
@@ -17,6 +20,32 @@
     <field name="confirmedBy"/>
     <field name="totalPrice"/>
   </grid>
+
+
+  <action-view name="action-sale-order-view-show-popup"
+    model="com.axelor.sale.db.InvoiceLine" title="Wizard">
+    <view type="form" name="wirard-form-example"/>
+    <view-param name="popup" value="reload"/>
+    <view-param name="show-toolbar" value="false"/>
+    <view-param name="show-confirm" value="false"/>
+    <view-param name="popup-save" value="false"/>
+  </action-view>
+
+  <form model="com.axelor.sale.db.InvoiceLine" title="Wizard" name="wirard-form-example">
+    <panel name="mainPanel">
+
+      <field name="$_xProduct" title="Product" type="many-to-one"
+        target="com.axelor.sale.db.Product" grid-view="product-grid" form-view="product-form"/>
+
+      <field name="$_xPartner" title="Client" type="many-to-one"
+        target="com.axelor.base.db.Partner" grid-view="partner-grid" form-view="partner-form"/>
+
+      <field name="$_xQty" title="Qty" type="decimal"/>
+
+      <button onClick="com.axelor.apps.sale.web.SaleOrderController:showDummyValues"
+        name="confirmBtn" title="Confirm"/>
+    </panel>
+  </form>
 
 
   <form name="sale-order-form" title="Sale order" model="com.axelor.sale.db.SaleOrder"
