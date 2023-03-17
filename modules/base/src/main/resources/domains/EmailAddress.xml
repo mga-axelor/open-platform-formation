@@ -9,7 +9,12 @@
 
     <many-to-one name="partner" ref="com.axelor.base.db.Partner" required="true"/>
 
-    <string name="fullEmail" title="Full email" readonly="true"/>
+    <string name="fullEmail" title="Full email" readonly="true" formula="true">
+      <![CDATA[
+        CONCAT(user_name, '@', domain_name)
+      ]]>
+    </string>
+
     <!-- specific title key key because "User name" can have a different meaning -->
     <string name="userName" title="emailAddress.userName" required="true"/>
     <string name="domainName" title="Domain name" required="true"/>
